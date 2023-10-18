@@ -1,3 +1,5 @@
+---@diagnostic disable: lowercase-global, undefined-global
+
 project "GLFW"
 	kind "StaticLib"
     systemversion "latest"
