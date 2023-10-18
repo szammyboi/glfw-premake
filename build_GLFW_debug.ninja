@@ -1,0 +1,57 @@
+# project build file
+# generated with premake ninja
+
+ninja_required_version = 1.6
+
+# core rules for debug
+rule cc
+  command = gcc -m64 -g -w -D_GLFW_WIN32 -D_CRT_SECURE_NO_WARNINGS -MMD -MF $out.d -c -o $out $in
+  description = cc $out
+  depfile = $out.d
+  deps = gcc
+
+rule cxx
+  command = g++ -m64 -g -w -MMD -MP -m64 -g -w -D_GLFW_WIN32 -D_CRT_SECURE_NO_WARNINGS -MMD -MF $out.d -c -o $out $in
+  description = cxx $out
+  depfile = $out.d
+  deps = gcc
+
+rule ar
+  command = ar rcs $out $in
+  description = ar $out
+
+rule link
+  command = gcc -o $out $in  -lgdi32  -L/usr/lib64 -m64
+  description = link $out
+
+rule custom_command
+  command = $CUSTOM_COMMAND
+  description = $CUSTOM_DESCRIPTION
+
+# build files
+build vendor/glfw-premake/bin-int/debug/GLFW/context.o: cc vendor/glfw-premake/src/context.c
+build vendor/glfw-premake/bin-int/debug/GLFW/egl_context.o: cc vendor/glfw-premake/src/egl_context.c
+build vendor/glfw-premake/bin-int/debug/GLFW/init.o: cc vendor/glfw-premake/src/init.c
+build vendor/glfw-premake/bin-int/debug/GLFW/input.o: cc vendor/glfw-premake/src/input.c
+build vendor/glfw-premake/bin-int/debug/GLFW/monitor.o: cc vendor/glfw-premake/src/monitor.c
+build vendor/glfw-premake/bin-int/debug/GLFW/null_init.o: cc vendor/glfw-premake/src/null_init.c
+build vendor/glfw-premake/bin-int/debug/GLFW/null_joystick.o: cc vendor/glfw-premake/src/null_joystick.c
+build vendor/glfw-premake/bin-int/debug/GLFW/null_monitor.o: cc vendor/glfw-premake/src/null_monitor.c
+build vendor/glfw-premake/bin-int/debug/GLFW/null_window.o: cc vendor/glfw-premake/src/null_window.c
+build vendor/glfw-premake/bin-int/debug/GLFW/osmesa_context.o: cc vendor/glfw-premake/src/osmesa_context.c
+build vendor/glfw-premake/bin-int/debug/GLFW/platform.o: cc vendor/glfw-premake/src/platform.c
+build vendor/glfw-premake/bin-int/debug/GLFW/vulkan.o: cc vendor/glfw-premake/src/vulkan.c
+build vendor/glfw-premake/bin-int/debug/GLFW/wgl_context.o: cc vendor/glfw-premake/src/wgl_context.c
+build vendor/glfw-premake/bin-int/debug/GLFW/win32_init.o: cc vendor/glfw-premake/src/win32_init.c
+build vendor/glfw-premake/bin-int/debug/GLFW/win32_joystick.o: cc vendor/glfw-premake/src/win32_joystick.c
+build vendor/glfw-premake/bin-int/debug/GLFW/win32_module.o: cc vendor/glfw-premake/src/win32_module.c
+build vendor/glfw-premake/bin-int/debug/GLFW/win32_monitor.o: cc vendor/glfw-premake/src/win32_monitor.c
+build vendor/glfw-premake/bin-int/debug/GLFW/win32_thread.o: cc vendor/glfw-premake/src/win32_thread.c
+build vendor/glfw-premake/bin-int/debug/GLFW/win32_time.o: cc vendor/glfw-premake/src/win32_time.c
+build vendor/glfw-premake/bin-int/debug/GLFW/win32_window.o: cc vendor/glfw-premake/src/win32_window.c
+build vendor/glfw-premake/bin-int/debug/GLFW/window.o: cc vendor/glfw-premake/src/window.c
+
+# link static lib
+build vendor/glfw-premake/bin/debug/GLFW/GLFW.lib: ar vendor/glfw-premake/bin-int/debug/GLFW/context.o vendor/glfw-premake/bin-int/debug/GLFW/egl_context.o vendor/glfw-premake/bin-int/debug/GLFW/init.o vendor/glfw-premake/bin-int/debug/GLFW/input.o vendor/glfw-premake/bin-int/debug/GLFW/monitor.o vendor/glfw-premake/bin-int/debug/GLFW/null_init.o vendor/glfw-premake/bin-int/debug/GLFW/null_joystick.o vendor/glfw-premake/bin-int/debug/GLFW/null_monitor.o vendor/glfw-premake/bin-int/debug/GLFW/null_window.o vendor/glfw-premake/bin-int/debug/GLFW/osmesa_context.o vendor/glfw-premake/bin-int/debug/GLFW/platform.o vendor/glfw-premake/bin-int/debug/GLFW/vulkan.o vendor/glfw-premake/bin-int/debug/GLFW/wgl_context.o vendor/glfw-premake/bin-int/debug/GLFW/win32_init.o vendor/glfw-premake/bin-int/debug/GLFW/win32_joystick.o vendor/glfw-premake/bin-int/debug/GLFW/win32_module.o vendor/glfw-premake/bin-int/debug/GLFW/win32_monitor.o vendor/glfw-premake/bin-int/debug/GLFW/win32_thread.o vendor/glfw-premake/bin-int/debug/GLFW/win32_time.o vendor/glfw-premake/bin-int/debug/GLFW/win32_window.o vendor/glfw-premake/bin-int/debug/GLFW/window.o 
+
+build GLFW_debug: phony vendor/glfw-premake/bin/debug/GLFW/GLFW.lib
